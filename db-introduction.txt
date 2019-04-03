@@ -1,9 +1,9 @@
 1.
 "A Clockwork Orange"  - string
 42                    - int
-09/02/1945            - there is a DATA data type but it is YYYY-MM-DD. So therefore this would be a string
+09/02/1945            - the data type is called date.
 98.7                  - float
-$15.99                - this would also be a string
+$15.99                - there are two datatypes: smallmoney and money. They have either 4 or 8 bytes storage.
 
 2.
 A database is always used when it is necessary to store data for your app or website. So whenever people input information that should
@@ -13,8 +13,12 @@ at the same time to retrieve and store data. A text file is for local use on you
 3.
 SQL uses a single = to make comparisions whereas other languages use double ==. 
 
+Another difference is that SQL is declarative and not procedural. We don't tell how something should be find but we describe what we want. Thats why the SQL statements almost read like english: I want these columns from this table but only those entries that are smaller than 100 in column x. OR something like that. 
+
+
 4. 
-I don't really understand this question. What pieces? 
+I am still a bit unsure about this question because it feels like that the answer is the same as for question 5.
+Anyway, the database can hold dozens of tables that all can be interlinked with keys. All information should only be stored once so it makes sense to organize information in various tables. For purchases I don't always need to store all the information about the customer in the purchase. I can just give the customerID which links it to the customer information. So all my tables hold my data and each table has rows and columns. Each column is a feature of that customer or purchase or whatever it is. And each row represents one individual customer or purchase for example. 
 
 5.
 A database can have multiple tables that all contain information. If we are a shop we might have information in our clients in one table and information on purchases in another. We can connect these together by having the client ID as a columns in the purchases table. 
@@ -27,9 +31,27 @@ strings, integers and floats
 7.
 For all entries in the payments table show me date and amount.
 
+OUTPUT:
+
+Date		    | Amount
+5/1/2016		| 1500.00
+5/10/2016		| 37.00
+5/15/2016		| 124.93
+5/23/2016		| 54.72
+
 For all entries in the payments table where the amount is bigger than 500 show me the amount.
 
+OUTPUT:
+
+Amount
+1500.00
+
 For all entries in the payments table where the payee is Mega Foods show me all available information.
+
+OUTPUT:
+
+Date	    | Payee	      | Amount	| Memo
+5/15/2016	| Mega Foods	| 124.93	| Groceries
 
 8.
 SELECT email, signup 
