@@ -1,1 +1,61 @@
-Test
+1.
+"A Clockwork Orange"  - string
+42                    - int
+09/02/1945            - there is a DATA data type but it is YYYY-MM-DD. So therefore this would be a string
+98.7                  - float
+$15.99                - this would also be a string
+
+2.
+A database is always used when it is necessary to store data for your app or website. So whenever people input information that should
+also be available when they come back it has to go into a database. Otherwise he information would be lost. A database allows multiple users
+at the same time to retrieve and store data. A text file is for local use on your computer.
+
+3.
+SQL uses a single = to make comparisions whereas other languages use double ==. 
+
+4. 
+I don't really understand this question. What pieces? 
+
+5.
+A database can have multiple tables that all contain information. If we are a shop we might have information in our clients in one table and information on purchases in another. We can connect these together by having the client ID as a columns in the purchases table. 
+The columns represent the characteristics of for example our clients. So maybe there are columns for first name, last name, phone number, etc.
+And each row represents a customer. In each cell there are values. For example the phone number of a specific customer. 
+
+6. 
+strings, integers and floats
+
+7.
+For all entries in the payments table show me date and amount.
+
+For all entries in the payments table where the amount is bigger than 500 show me the amount.
+
+For all entries in the payments table where the payee is Mega Foods show me all available information.
+
+8.
+SELECT email, signup 
+FROM users
+WHERE name = 'DeAndre Data';
+
+OUTPUT:
+
+email               | signup
+datad@comcast.net   | 2008-01-20
+
+
+SELECT userid
+FROM users
+WHERE email = 'aleesia.algorithm@uw.edu';
+
+OUTPUT:
+
+userid
+1
+
+SELECT *
+FROM users
+WHERE userid = 4;
+
+OUTPUT:
+
+userid	| name	          | email	            | signup
+4	      | Brandy Boolean	| bboolean@nasa.gov	| 1999-10-15
