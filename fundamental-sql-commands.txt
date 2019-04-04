@@ -1,0 +1,116 @@
+1.
+INSERT INTO command
+
+UPDATE command
+
+DELETE command
+
+2.
+INSERT INTO tablename (id, size)
+VALUES
+(12, 'large'),
+(13, 'medium');
+
+After the INSERT INTO command you state the table name and then the columns that you insert. After the keyword VALUES the values to be inserted follow. Here we create two new rows in the table. 
+
+UPDATE tablename SET size='large' WHERE id=13;
+
+After the UPDATE command we state the tablename and then after the SET keyword we change size to large where the id is 13.
+
+DELETE FROM tablename where id=13;
+
+After the DELETE FROM command we state the tablename and then a condition.
+
+3.
+We can use the data type 'time' to store a time for example of an observation of the temperature. 
+We can use data type DECIMAL to store the temperature. 
+We can use VARCHAR(1) to store either F or C. This will only allow one character to be stored. 
+
+4.
+First and last name would be VARCHAR(n) with a high limit to allow for long names. 
+RSVP would be a BOOLEAN to hold either true or false.
+Number of guests would be an INTEGER. 
+Number of meals a DECIMAL to allow for .5 values.
+
+CREATE TABLE invitations (
+  firstName varchar(64),
+  lastName varchar(64),
+  RSVP boolean,
+  noOfGuests integer,
+  noOfMeals decimal
+);
+
+ALTER TABLE invitations ADD COLUMN thankYou boolean SET DEFAULT false;
+
+ALTER TABLE invitations DROP COLUMN noOfMeals;
+
+ALTER TABLE invitations ADD COLUMN table integer SET DEFAULT 'None';
+
+ALTER TABLE invitations DROP COLUMN table;
+
+5.
+I don't know whether that depends on the fact that I am working on a European machine but I enter dates as 'dd/mm/yyyy' and it turns out correct. 
+
+CREATE TABLE librarybooks (
+  ISBN10 integer,
+  title varchar(128),
+  author varchar(128),
+  genre varchar(128),
+  publishDate date,
+  copies integer,
+  availableCopies integer
+);
+
+INSERT INTO librarybooks
+VALUES 
+(3551557411, 'Harry Potter und der Stein der Weisen', 'J.K. Rowling', 'Fantasy', '31/08/2018', 2, 1),
+(3551354022, 'Harry Potter und die Kammer des Schreckens', 'J.K. Rowling', 'Fantasy', '23/02/2006', 1, 1),
+(9783551354037, 'Harry Potter und der Gefangene von Askaban', 'J.K. Rowling', 'Fantasy', '23/02/2007', 3, 2);
+
+UPDATE librarybooks SET availableCopies = 1 WHERE ISBN10 = 9783551354037;
+
+DELETE FROM librarybooks WHERE ISBN10 = 3551557411;
+
+6.
+CREATE TABLE spacecrafts (
+  id integer,
+  name varchar(64),
+  launchyear integer,
+  country varchar(64),
+  mission text,
+  orbiting varchar(64),
+  operating boolean,
+  milesfromearth integer
+);
+
+INSERT INTO spacecrafts
+VALUES
+(1, 'Mars 2', 1971, 'image the Martian surface and clouds, determine the temperature on Mars, study the topography, composition and physical properties of the surface, measure properties of the atmosphere, monitor the solar wind and the interplanetary and Martian magnetic fields, and act as a communications relay to send signals from the landers to the Earth', 'Mars', false, 33900000),
+(2, 'Mars 3', 1971, 'study the topography of the surface; analyze its soil composition; measure various properties of the atmosphere; monitor "solar radiation, the solar wind, and the interplanetary and martian magnetic fields".[2] In addition, it served as a "communications relay to send signals from the lander to Earth', 'Mars', false, 33900000),
+(3, 'Mars 4', 1973, 'study the topography of the surface; analyze its soil composition; measure various properties of the atmosphere; monitor "solar radiation, the solar wind, and the interplanetary and martian magnetic fields".[2] In addition, it served as a "communications relay to send signals from the lander to Earth', 'Mars', true, 33900000)
+
+DELETE FROM spacecrafts WHERE id=1;
+
+UPDATE spacecrafts SET operating=false WHERE id=3;
+
+7.
+CREATE TABLE emails (
+  id integer,
+  subject varchar(255),
+  sender varchar(64),
+  recipients varchar(128),
+  body text,
+  timestamp timestamp,
+  read boolean,
+  chain integer
+);
+
+INSERT INTO emails
+VALUES
+(1, 'Bloc progess', 'Mentor', 'Coaches', 'Hi Nils, please let us know how everything is going', TIMESTAMP '2019-04-04 19:01:00', true, 1),
+(2, 'Picture', 'Dad', 'Sister', 'Hi Nils, please find the picture we talked about attached', TIMESTAMP '2019-04-01 12:05:00', false, 2),
+(3, 'Meeting', 'Boss', 'Colleague', 'Hi Nils, let's meet at 12 today.', TIMESTAMP '2019-04-02 11:30:00', true, 3)
+
+DELETE FROM emails WHERE id=3;
+
+UPDATE emails SET read=false where id=1;
