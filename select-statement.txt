@@ -1,0 +1,90 @@
+1.
+SELECT column1, column2, ... 
+FROM table-name
+WHERE ...
+
+We can select all the columns we need are just use the * to select them all.
+SELECT and FROM are mandatory. Where is optional.
+
+2.
+S-F-W
+Sehr frische Ware. That's german and means 'very fresh goods' - which doesn't make too much sense but I guess that's why these things stick in your mind.
+
+3.
+ SELECT name, gender, age FROM dogs WHERE breed LIKE '%labrador%';
+
+ SELECT id FROM dogs WHERE age < 1;
+
+SELECT name, age FROM dogs WHERE gender='F' AND weight>35;
+
+SELECT * FROM dogs WHERE breed NOT LIKE '%shepherd%';
+
+SELECT id, age, weight, breed FROM dogs WHERE weight>60 or breed = 'great dane';
+
+4.
+   name   | adoption_date
+----------+---------------
+ Mushi    | 2016-03-22
+ Seashell |
+ Azul     | 2016-04-17
+ Victoire | 2016-09-01
+ Nala     |
+(5 Zeilen)
+
+   name   | age
+----------+-----
+ Mushi    |   1
+ Seashell |   7
+ Azul     |   3
+ Victoire |   7
+ Nala     |   1
+(5 Zeilen)
+
+5.
+SELECT * FROM cats;
+
+SELECT name, gender FROM cats WHERE age=7;
+
+SELECT name FROM cats;
+
+The last one could also be:
+SELECT DISTINCT name FROM cats;
+
+6.
+>                       to see if something is greater
+<                       to see if something is smaller
+=                       to see if something is equal
+<=                      to see if something is less than or equal
+>=                      to see if something is greater than or equal
+!= <>                   to see if something is unequal
+NOT                     to see if something is not something
+LIKE                    to see if a string includes part of a string
+BETWEEN                 to select values between a given range
+IS DISTINCT FROM        is (not) distinct from also compares nulls; otherwise null = null is not true.
+IS TRUE / IS FALSE      to se if something is true or false
+IS NULL                 to see if something is null
+AND                     connect two comparisons that both need to be true to be true overall
+OR                      connect two comparisons and only one needs to turn out true
+
+7.
+   name
+----------
+ Seashell
+ Nala
+(2 Zeilen)
+
+
+   name
+----------
+ Mushi
+ Seashell
+ Victoire
+ Nala
+(4 Zeilen)
+
+
+ id
+----
+  3
+  4
+(2 Zeilen)
