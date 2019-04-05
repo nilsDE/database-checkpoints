@@ -1,0 +1,61 @@
+1.
+Related data can be found by joining two tables. A table has a primary key that is unique per row. This might be the foreign key in another table. Based on these keys we can join the tables together. 
+
+2. 
+Which 'join' to use depends on the desired outcome. If you only want thos that have data in both tables, it is an inner join. 
+If I want to make sure that the resulting table has as many rows as the first, it is a left outer join. If I want to make sure for the second table, it is a right outer join. 
+Example:
+Lets say I have a table with companies and their IDs as primary key in that table. And then there is another table that has accounts that habe an account id as primary kay and also the company Id as foreign key. 
+I select the accounts and join the companies on the company id. It will return all accounts that match with a company on the id.
+I do the same as a left outer join. It will return all of the accounts even if there are accounts that don't have a match in the company table. 
+Right outer join is the other way around. It returns all companies also if there is no match in the accounts.
+
+3.
+The example is like the one under 2. Each table has a primary key that is unique for each entry. A primary key of a table can be a foreign key in another. This is how we joined accounts and companies in 2.
+
+4.
+Aliasing is just a way of giving names to tables or columns. We use the keyword AS followed by the name that we want. It allows us to use abbreviations when we do joins or we can use different names for the columns in the result table. 
+
+5.
+SELECT prof.name, comp.salary, comp.vacation_days 
+FROM professor AS prof
+JOIN
+compensation AS comp 
+ON prof.id = comp.professor_id;
+
+6. 
+When we use NATURAL we don't have to specify columns. It will just select all columns that are present in both tables. 
+As an example, if I have addresses in my company table but also an addresses table and both tables have street and city, I can make a natural join that returns these two columns.
+
+7.
+This returns all the scheduled shifts and the names of the people:
+
+SELECT e.name, s.date, s.start_time, s.end_time FROM scheduled_shifts AS ss JOIN employe
+es AS e ON ss.employee_id = e.id JOIN shifts AS s on ss.shift_id = s.id;
+
+8.
+I included first and last name of the volunteers and the name of the dog in case they foster one:
+
+SELECT v.first_name, v.last_name, d.name AS dog_name FROM volunteers as v LEFT OUTER JOIN dogs AS d ON v.fo
+ster_dog_id = d.id;
+
+
+SELECT c.name AS cat_name, a.first_name AS adopters_first_name, a.last_name AS adopters_last_name, ca.date
+AS adoption_date FROM cat_adoptions AS ca JOIN adopters AS a ON ca.adopter_id = a.id JOIN cats AS c on ca.cat_id = c.i
+d WHERE ca.date > '2019-02-28';
+
+
+SELECT * FROM adopters AS a LEFT OUTER JOIN dog_adoptions AS da ON a.id = da.adopter_id WHERE da.adopter_id
+ is null;
+
+SELECT d.id, d.name FROM dogs AS d LEFT OUTER JOIN dog_adoptions AS da ON d.id = da.dog_id WHERE da.adopter_id IS NULL;
+SELECT c.id, c.name FROM cats AS c LEFT OUTER JOIN cat_adoptions AS ca ON c.id = ca.cat_id WHERE ca.adopter_id IS NULL;
+
+SELECT a.first_name, a.last_name FROM dog_adoptions AS da JOIN adopters AS a ON da.adopter_id = a.id JOIN dogs AS d ON da.dog_id = d.id;
+
+9.
+SELECT p.name, h.rank FROM holds AS h JOIN patrons AS p ON h.patron_id = p.id JOIN books AS b ON h.isbn = b.isbn WHERE
+b.title LIKE '%Potion-Making%' ORDER BY h.rank ASC;
+
+SELECT p.name, b.title FROM transactions AS t JOIN patrons AS p ON t.patron_id = p.id JOIN books AS b ON t.isbn = b.isb
+n WHERE t.checked_in_date IS NULL;
