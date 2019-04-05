@@ -36,26 +36,80 @@ es AS e ON ss.employee_id = e.id JOIN shifts AS s on ss.shift_id = s.id;
 8.
 I included first and last name of the volunteers and the name of the dog in case they foster one:
 
-SELECT v.first_name, v.last_name, d.name AS dog_name FROM volunteers as v LEFT OUTER JOIN dogs AS d ON v.fo
-ster_dog_id = d.id;
+SELECT v.first_name, v.last_name, d.name AS dog_name FROM volunteers as v LEFT OUTER JOIN dogs AS d ON v.foster_dog_id = d.id;
+
+ first_name | last_name  | dog_name
+------------+------------+-----------
+ Rubeus     | Hagrid     | Munchkin
+ Marjorie   | Dursley    | Marmaduke
+ Sirius     | Black      |
+ Remus      | Lupin      |
+ Albus      | Dumbledore |
+(5 Zeilen)
 
 
 SELECT c.name AS cat_name, a.first_name AS adopters_first_name, a.last_name AS adopters_last_name, ca.date
-AS adoption_date FROM cat_adoptions AS ca JOIN adopters AS a ON ca.adopter_id = a.id JOIN cats AS c on ca.cat_id = c.i
-d WHERE ca.date > '2019-02-28';
+AS adoption_date FROM cat_adoptions AS ca JOIN adopters AS a ON ca.adopter_id = a.id JOIN cats AS c on ca.cat_id = c.id WHERE ca.date BETWEEN '2019-03-05' AND '2019-04-05';
+
+ cat_name | adopters_first_name | adopters_last_name | adoption_date
+----------+---------------------+--------------------+---------------
+ Mushi    | Arabella            | Figg               | 2019-03-16
+ Victoire | Argus               | Filch              | 2019-03-21
+(2 Zeilen)
 
 
 SELECT * FROM adopters AS a LEFT OUTER JOIN dog_adoptions AS da ON a.id = da.adopter_id WHERE da.adopter_id
  is null;
 
+ id | first_name | last_name |       address       | phone_number | adopter_id | dog_id | date | fee
+----+------------+-----------+---------------------+--------------+------------+--------+------+-----
+  1 | Hermione   | Granger   | 32 Granger's Street | 676-464-7837 |            |        |      |
+  2 | Arabella   | Figg      | 4 Wisteria Walk     | 843-228-5239 |            |        |      |
+(2 Zeilen)
+
+
+
 SELECT d.id, d.name FROM dogs AS d LEFT OUTER JOIN dog_adoptions AS da ON d.id = da.dog_id WHERE da.adopter_id IS NULL;
 SELECT c.id, c.name FROM cats AS c LEFT OUTER JOIN cat_adoptions AS ca ON c.id = ca.cat_id WHERE ca.adopter_id IS NULL;
 
+ id |   name
+----+----------
+  2 | Seashell
+  5 | Nala
+(2 Zeilen)
+
+
 SELECT a.first_name, a.last_name FROM dog_adoptions AS da JOIN adopters AS a ON da.adopter_id = a.id JOIN dogs AS d ON da.dog_id = d.id;
+
+ first_name | last_name
+------------+-----------
+ Argus      | Filch
+(1 Zeile)
+
 
 9.
 SELECT p.name, h.rank FROM holds AS h JOIN patrons AS p ON h.patron_id = p.id JOIN books AS b ON h.isbn = b.isbn WHERE
 b.title LIKE '%Potion-Making%' ORDER BY h.rank ASC;
 
-SELECT p.name, b.title FROM transactions AS t JOIN patrons AS p ON t.patron_id = p.id JOIN books AS b ON t.isbn = b.isb
-n WHERE t.checked_in_date IS NULL;
+      name      | rank
+----------------+------
+ Terry Boot     |    1
+ Cedric Diggory |    2
+(2 Zeilen)
+
+
+SELECT p.name, b.title 
+FROM transactions AS t
+JOIN books AS b 
+on b.isbn = t.isbn AND
+t.checked_in_date is NULL
+RIGHT OUTER JOIN patrons as p ON t.patron_id = p.id; 
+
+       name       |                  title
+------------------+-----------------------------------------
+ Hermione Granger |
+ Terry Boot       | Advanced Potion-Making
+ Padma Patil      |
+ Cho Chang        |
+ Cedric Diggory   | Fantastic Beasts and Where to Find Them
+(5 Zeilen)
